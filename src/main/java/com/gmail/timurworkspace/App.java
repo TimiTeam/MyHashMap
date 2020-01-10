@@ -7,13 +7,14 @@ public class App {
     public static void main(String[] args) {
 
         MyHashMap hashMap = new MyHashMap(38);
-        int keys[] = new int[96998];
+        int keys[] = new int[998];
+        int range = 530;
         Map<Integer, Long> map = new HashMap<>(38);
 
-        System.out.println("//Generated a random keys(" + keys.length + ") with range from 1 to 5000. And put them to custom MyHashMap and original HashMap with key index as a value");
+        System.out.println("//Generated a random keys(" + keys.length + ") with range from 1 to "+range+". And put them to custom MyHashMap and original HashMap with key index as a value");
 
         for (int i = 0; i < keys.length; ++i) {
-            int key = new Random().nextInt(50000);
+            int key = new Random().nextInt(range) + 1;
             keys[i] = key;
         }
 
@@ -28,6 +29,7 @@ public class App {
         } catch (KeyNotExistException e) {
             System.out.println(e.getMessage());
         }
+
     }
 
     public static void speedTest(int keys[], MyHashMap myHashMap, Map<Integer, Long> originalMap){
@@ -40,14 +42,14 @@ public class App {
         tester.fillHashMap(keys, originalMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to feel the   HashMap: " + duration);
+        System.out.println("time to fill out the   HashMap: " + duration);
 
         startTime = System.nanoTime();
 
         tester.fillMyHashMap(keys, myHashMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to feel the MyHashMap: " + duration);
+        System.out.println("time to fill out the MyHashMap: " + duration);
 
         tester.getAllValueHashMap(keys, originalMap);
         endTime = System.nanoTime();

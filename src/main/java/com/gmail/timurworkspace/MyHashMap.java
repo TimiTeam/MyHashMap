@@ -38,7 +38,7 @@ public class MyHashMap {
                 empty = i;
             }
             if (i + 1 == arraySize) {
-                i = 0;
+                i = -1;
                 max = index;
             }
         }
@@ -62,7 +62,7 @@ public class MyHashMap {
                 return e.getValue();
             }
             if (i + 1 == arraySize) {
-                i = 0;
+                i = -1;
                 max = index;
             }
         }
