@@ -1,47 +1,55 @@
 package com.gmail.timurworkspace;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
-public class App
-{
-    public static void main( String[] args )
+public class App{
+
+    public static void fillHashMap(int keys[], Map<Integer, Long> map){
+        for (int i = 0; i < keys.length; ++i){
+            map.put(keys[i], i + 0L);
+        }
+    }
+
+
+    public static void fillMyHashMap(int keys[], MyHashMap map){
+        for (int i = 0; i < keys.length; ++i){
+            map.put(keys[i], i + 0L);
+        }
+    }
+
+    public static void main(String[] args )
     {
+
         MyHashMap hashMap = new MyHashMap(38);
-        int keys[] = new int[155];
-        Set<Integer> set = new HashSet<>();
+        int keys[] = new int[1505];
+        Map<Integer, Long> map = new HashMap<>(38);
 
-        System.out.println("//\tGenerated a random keys("+keys.length+") with range from 1 to 5000. And put them to MyHashMap with key index as a value");
+        System.out.println("//\tGenerated a random keys("+keys.length+") with range from 1 to 5000. And put them to custom MyHashMap and original HashMap with key index as a value");
 
-        for (int i = 0; i < keys.length; ++i){
-            int key = new Random().nextInt(5000) + 1;
-            keys[i] = key;
-            set.add(key);
-        }
+       for (int i = 0; i < keys.length; ++i){
+           int key = new Random().nextInt(5000) + 1;
+           keys[i] = key;
+       }
 
-        for (int i = 0; i < keys.length; ++i){
-            hashMap.put(keys[i], i);
-        }
 
-        System.out.println("//\tList all "+hashMap.size()+" elements of MyHashMap");
+        long endTime;
+        long duration;
 
-        for(Integer i : set){
-            System.out.println("key = "+i+" val = "+hashMap.get(i));
-        }
+        long startTime = System.nanoTime();
 
-        System.out.println("//\tEnd. ");
-        System.out.println("//\tPutting elements with the same key thrice: put(99999, 55); put(99999, 100); put(99999, 256);\n//\tand getting value get(99999)");
+        fillHashMap(keys,map);
+        endTime = System.nanoTime();
+        duration = endTime - startTime;
+        System.out.println("time to feel the   HashMap: "+duration);
 
-        hashMap.put(99999, 55);
-        hashMap.put(99999, 100);
-        hashMap.put(99999, 256);
+        startTime = System.nanoTime();
 
-        System.out.println("key = "+99999+" val = "+hashMap.get(99999));
+        fillMyHashMap(keys,hashMap);
+        endTime  = System.nanoTime();
+        duration = endTime - startTime;
+        System.out.println("time to feel the MyHashMap: "+duration);
 
-        System.out.println("//\tGetting value by nonexistent key");
-
-        System.out.println("key = "+77777777+" val = "+hashMap.get(77777777));
-        System.out.println("Map size = "+hashMap.size());
+        System.out.println("size of custom MyHash = "+hashMap.size()+", size of original HashMap = "+map.size());
     }
 }
+    
