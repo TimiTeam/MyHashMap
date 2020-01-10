@@ -7,19 +7,19 @@ public class App {
     public static void main(String[] args) {
 
         MyHashMap hashMap = new MyHashMap(38);
-        int keys[] = new int[122];
+        int keys[] = new int[96998];
         Map<Integer, Long> map = new HashMap<>(38);
 
         System.out.println("//Generated a random keys(" + keys.length + ") with range from 1 to 5000. And put them to custom MyHashMap and original HashMap with key index as a value");
 
         for (int i = 0; i < keys.length; ++i) {
-            int key = new Random().nextInt(5000) + 1;
+            int key = new Random().nextInt(50000);
             keys[i] = key;
         }
 
         speedTest(keys, hashMap, map);
 
-        System.out.println("size of custom MyHash = " + hashMap.size() + ", size of original HashMap = " + map.size());
+        System.out.println("size of custom MyHashMap = " + hashMap.size() + ", size of original HashMap = " + map.size());
 
         int key = 99999999;
         System.out.println("//Retrieving a value from a nonexistent key: " + key);
@@ -73,8 +73,8 @@ public class App {
         for (int i = 0; i < keys.length; ++i) {
             try {
                 map.put(keys[i], i + 0L);
-            } catch (MapOverflowException mapOverflowExceprion) {
-                mapOverflowExceprion.getMessage();
+            } catch (MapOverflowException MapOverflowException) {
+                MapOverflowException.getMessage();
             }
         }
     }

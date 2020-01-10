@@ -42,8 +42,10 @@ public class MyHashMap {
                 max = index;
             }
         }
-        elements[empty] = new Element(key, value);
-        ++size;
+        if (find) {
+            elements[empty] = new Element(key, value);
+            ++size;
+        }
         return value;
     }
 
@@ -52,7 +54,6 @@ public class MyHashMap {
     }
 
     public long get(int key) throws KeyNotExistException {
-        boolean circle = false;
         int index = getIndex(key);
         int max = arraySize;
         Element e;
@@ -60,10 +61,7 @@ public class MyHashMap {
             if ((e = elements[i]) != null && e.getKey() == key) {
                 return e.getValue();
             }
-            if (i + 1 == max) {
-                if (circle)
-                    break;
-                circle = true;
+            if (i + 1 == arraySize) {
                 i = 0;
                 max = index;
             }
@@ -72,8 +70,8 @@ public class MyHashMap {
     }
 
     private int hash(int key) {
-        key ^= (key >>> 20) ^ (key >>> 10);
-        return key ^ (key >>> 8) ^ (key >>> 4);
+        key ^= (key >>> 20) ^ (key >>> 12);
+        return key ^ (key >>> 7) ^ (key >>> 4);
     }
 
     private int getIndex(int key) {
@@ -91,20 +89,20 @@ public class MyHashMap {
         private int key;
         private long value;
 
-        public Element(int key, long value) {
+        private Element(int key, long value) {
             this.key = key;
             this.value = value;
         }
 
-        public int getKey() {
+        private int getKey() {
             return key;
         }
 
-        public long getValue() {
+        private long getValue() {
             return value;
         }
 
-        public void setValue(long value) {
+        private void setValue(long value) {
             this.value = value;
         }
     }
