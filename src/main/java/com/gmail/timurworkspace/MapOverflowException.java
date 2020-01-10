@@ -1,9 +1,8 @@
 package com.gmail.timurworkspace;
 
-public class KeyNotExistException extends Exception{
-
+public class MapOverflowException extends Exception {
     @Override
     public String getMessage() {
-        return "Key not exist";
+        return "Map is full";
     }
 }
