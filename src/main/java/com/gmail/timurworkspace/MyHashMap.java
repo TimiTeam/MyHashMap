@@ -36,8 +36,11 @@ public class MyHashMap {
                 elements[index] = new Element(key, value);
                 ++size;
             }
-            else
+            else {
+                long ret = elements[index].getValue();
                 elements[index].setValue(value);
+                return ret;
+            }
         }
         return value;
     }
@@ -65,8 +68,8 @@ public class MyHashMap {
 
     private int hash(int key)
     {
-        key ^= (key >>> 20) ^ (key >>> 12);
-        return key ^ (key >>> 7) ^ (key >>> 4);
+        key ^= (key >>> 20) ^ (key >>> 10);
+        return key ^ (key >>> 8) ^ (key >>> 4);
     }
 
     private int getIndex(int key){
