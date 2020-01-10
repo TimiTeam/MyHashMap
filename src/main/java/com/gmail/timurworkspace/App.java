@@ -42,26 +42,26 @@ public class App {
         tester.fillHashMap(keys, originalMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to fill out the   HashMap: " + duration);
+        System.out.println("time to fill out the original HashMap: " + duration);
 
         startTime = System.nanoTime();
 
         tester.fillMyHashMap(keys, myHashMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to fill out the MyHashMap: " + duration);
+        System.out.println("time to fill out the custom MyHashMap: " + duration);
 
         tester.getAllValueHashMap(keys, originalMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to get all values from   HashMap: " + duration);
+        System.out.println("time to get all values from original HashMap: " + duration);
 
         startTime = System.nanoTime();
 
         tester.getAllValueMyHashMap(keys, myHashMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to get all values from MyHashMap: " + duration);
+        System.out.println("time to get all values from custom MyHashMap: " + duration);
 
     }
 
