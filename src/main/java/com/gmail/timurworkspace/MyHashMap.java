@@ -66,7 +66,7 @@ public class MyHashMap {
         return size;
     }
 
-    public long get(int key) {
+    public long get(int key) throws KeyNotExistException {
         boolean circle = false;
         Element e;
         for (int i = getIndex(key); i < arraySize; ++i) {
@@ -80,7 +80,7 @@ public class MyHashMap {
                 i = 0;
             }
         }
-        return (-0);
+        throw new KeyNotExistException();
     }
 
     private int hash(int key) {

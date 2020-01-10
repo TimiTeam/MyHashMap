@@ -24,7 +24,7 @@ public class App{
         int keys[] = new int[1505];
         Map<Integer, Long> map = new HashMap<>(38);
 
-        System.out.println("//\tGenerated a random keys("+keys.length+") with range from 1 to 5000. And put them to custom MyHashMap and original HashMap with key index as a value");
+        System.out.println("//Generated a random keys("+keys.length+") with range from 1 to 5000. And put them to custom MyHashMap and original HashMap with key index as a value");
 
        for (int i = 0; i < keys.length; ++i){
            int key = new Random().nextInt(5000) + 1;
@@ -50,6 +50,14 @@ public class App{
         System.out.println("time to feel the MyHashMap: "+duration);
 
         System.out.println("size of custom MyHash = "+hashMap.size()+", size of original HashMap = "+map.size());
+
+        int key = 99999999;
+        System.out.println("//Retrieving a value from a nonexistent key: "+key);
+        try {
+            System.out.println("Key = "+key+", value = "+hashMap.get(key));
+        }
+        catch (KeyNotExistException e){
+            System.out.println(e.getMessage());
+        }
     }
 }
-    
