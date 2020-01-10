@@ -9,7 +9,7 @@ public class App
     public static void main( String[] args )
     {
         MyHashMap hashMap = new MyHashMap(35);
-        int keys[] = new int[50];
+        int keys[] = new int[128 * 1000];
         Set<Integer> set = new HashSet<>();
         for (int i = 0; i < keys.length; ++i){
             int key = new Random().nextInt(5000);
