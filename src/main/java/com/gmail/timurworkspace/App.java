@@ -22,10 +22,20 @@ public class App {
 
         System.out.println("size of custom MyHashMap = " + hashMap.size() + ", size of original HashMap = " + map.size());
 
-        int key = 99999999;
-        System.out.println("//Retrieving a value from a nonexistent key: " + key);
+        int key = 2020;
+        long value = 1996L;
+        System.out.println("//Put value "+value+" with key "+key+"\n//Get value by key "+key);
         try {
-            System.out.println("Key = " + key + ", value = " + hashMap.get(key));
+            hashMap.put(key, value);
+            System.out.println("Value by the key "+key+" is "+hashMap.get(key));
+        }catch (KeyNotExistException | MapOverflowException e){
+            System.out.println(e.getMessage());
+        }
+
+        int nonExistkey = 99999999;
+        System.out.println("//Retrieving a value from a nonexistent key: " + nonExistkey);
+        try {
+            System.out.println("Key = " + nonExistkey + ", value = " + hashMap.get(nonExistkey));
         } catch (KeyNotExistException e) {
             System.out.println(e.getMessage());
         }
