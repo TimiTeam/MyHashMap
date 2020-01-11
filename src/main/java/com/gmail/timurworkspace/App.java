@@ -4,6 +4,8 @@ import java.util.*;
 
 public class App {
 
+    private static final long secInNanos = 1_000_000_000;
+
     public static void main(String[] args) {
 
         MyHashMap hashMap = new MyHashMap(38);
@@ -52,26 +54,26 @@ public class App {
         tester.fillHashMap(keys, originalMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to fill out the original HashMap: " + duration);
+        System.out.println("time to fill out the original HashMap: " + (double)duration / secInNanos + " sec");
 
         startTime = System.nanoTime();
 
         tester.fillMyHashMap(keys, myHashMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to fill out the custom MyHashMap: " + duration);
+        System.out.println("time to fill out the custom MyHashMap: " + (double)duration / secInNanos + " sec");
 
         tester.getAllValueHashMap(keys, originalMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to get all values from original HashMap: " + duration);
+        System.out.println("time to get all values from original HashMap: " + (double)duration / secInNanos + " sec");
 
         startTime = System.nanoTime();
 
         tester.getAllValueMyHashMap(keys, myHashMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to get all values from custom MyHashMap: " + duration);
+        System.out.println("time to get all values from custom MyHashMap: " + (double)duration / secInNanos + " sec");
 
     }
 
