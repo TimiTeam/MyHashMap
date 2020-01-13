@@ -9,7 +9,7 @@ public class App {
     public static void main(String[] args) {
 
         MyHashMap hashMap = new MyHashMap(38);
-        int keys[] = new int[998];
+        int keys[] = new int[87];
         int range = 530;
         Map<Integer, Long> map = new HashMap<>(38);
 
@@ -54,26 +54,26 @@ public class App {
         tester.fillHashMap(keys, originalMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to fill out the original HashMap: " + (double)duration / secInNanos + " sec");
+        System.out.println("time to fill out the original HashMap: " + duration+" nanosec");
 
         startTime = System.nanoTime();
 
         tester.fillMyHashMap(keys, myHashMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to fill out the custom MyHashMap: " + (double)duration / secInNanos + " sec");
+        System.out.println("time to fill out the custom MyHashMap: " + duration+" nanosec");
 
         tester.getAllValueHashMap(keys, originalMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to get all values from original HashMap: " + (double)duration / secInNanos + " sec");
+        System.out.println("time to get all values from original HashMap: " + duration+" nanosec");
 
         startTime = System.nanoTime();
 
         tester.getAllValueMyHashMap(keys, myHashMap);
         endTime = System.nanoTime();
         duration = endTime - startTime;
-        System.out.println("time to get all values from custom MyHashMap: " + (double)duration / secInNanos + " sec");
+        System.out.println("time to get all values from custom MyHashMap: " + duration+" nanosec");
 
     }
 
