@@ -3,8 +3,8 @@ package com.gmail.timurworkspace;
 import java.util.Arrays;
 
 public class MyHashMap {
-    private static final int minSize = 128;
-    private static final int maxSize = 128 * 1000 + 1;
+    private static final int minSize = 16;
+    private static final int maxSize = minSize * 1000 + 1;
     private Element[] elements;
     private int arraySize;
     private int size;
