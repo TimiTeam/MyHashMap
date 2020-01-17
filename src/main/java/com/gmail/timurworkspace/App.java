@@ -1,113 +1,39 @@
 package com.gmail.timurworkspace;
 
+import com.gmail.timurworkspace.HashMap.MyHashMap;
+
 import java.util.*;
 
 public class App {
 
-    private static final long secInNanos = 1_000_000_000;
+
+    public static List<Integer> createKeys(int len){
+        List<Integer> ret = new ArrayList<>(len);
+        for(int i = 0; i < len; ++i){
+            ret.add(new Random().nextInt() + 43);
+        }
+        return ret;
+    }
 
     public static void main(String[] args) {
 
-        MyHashMap hashMap = new MyHashMap(38);
-        int keys[] = new int[87];
-        int range = 530;
-        Map<Integer, Long> map = new HashMap<>(38);
+        Map<Integer, String> originalMap = new HashMap<>(12);
+        MyHashMap <Integer, String> customMap = new MyHashMap<>(12);
 
-        System.out.println("//Generated a random keys(" + keys.length + ") with range from 1 to "+range+". And put them to custom MyHashMap and original HashMap with key index as a value");
+        int containerLen = 67;
 
-        for (int i = 0; i < keys.length; ++i) {
-            int key = new Random().nextInt(range) + 1;
-            keys[i] = key;
+        List<Integer> key = createKeys(containerLen);
+
+
+        for(int i = 0; i < containerLen; ++i){
+            originalMap.put(key.get(i), "Value: "+i);
+            customMap.put(key.get(i), "Value: "+i);
         }
 
-        speedTest(keys, hashMap, map);
+        System.out.println("original size: "+originalMap.size()+", custom size: "+customMap.size());
 
-        System.out.println("size of custom MyHashMap = " + hashMap.size() + ", size of original HashMap = " + map.size());
-
-        int key = 2020;
-        long value = 1996L;
-        System.out.println("//Put value "+value+" with key "+key+"\n//Get value by key "+key);
-        try {
-            hashMap.put(key, value);
-            System.out.println("Value by the key "+key+" is "+hashMap.get(key));
-        }catch (KeyNotExistException | MapOverflowException e){
-            System.out.println(e.getMessage());
-        }
-
-        int nonExistkey = 99999999;
-        System.out.println("//Retrieving a value from a nonexistent key: " + nonExistkey);
-        try {
-            System.out.println("Key = " + nonExistkey + ", value = " + hashMap.get(nonExistkey));
-        } catch (KeyNotExistException e) {
-            System.out.println(e.getMessage());
-        }
-
-    }
-
-    public static void speedTest(int keys[], MyHashMap myHashMap, Map<Integer, Long> originalMap){
-        App tester = new App();
-        long endTime;
-        long duration;
-
-        long startTime = System.nanoTime();
-
-        tester.fillHashMap(keys, originalMap);
-        endTime = System.nanoTime();
-        duration = endTime - startTime;
-        System.out.println("time to fill out the original HashMap: " + duration+" nanosec");
-
-        startTime = System.nanoTime();
-
-        tester.fillMyHashMap(keys, myHashMap);
-        endTime = System.nanoTime();
-        duration = endTime - startTime;
-        System.out.println("time to fill out the custom MyHashMap: " + duration+" nanosec");
-
-        tester.getAllValueHashMap(keys, originalMap);
-        endTime = System.nanoTime();
-        duration = endTime - startTime;
-        System.out.println("time to get all values from original HashMap: " + duration+" nanosec");
-
-        startTime = System.nanoTime();
-
-        tester.getAllValueMyHashMap(keys, myHashMap);
-        endTime = System.nanoTime();
-        duration = endTime - startTime;
-        System.out.println("time to get all values from custom MyHashMap: " + duration+" nanosec");
-
-    }
-
-    private  void fillHashMap(int keys[], Map<Integer, Long> map) {
-        for (int i = 0; i < keys.length; ++i) {
-            map.put(keys[i], i + 0L);
+        for(int i = 0; i < containerLen; ++i){
+            System.out.println("key = "+key.get(i)+". original: "+originalMap.get(key.get(i))+", custom: "+customMap.get(key.get(i)));
         }
     }
-
-    private  void fillMyHashMap(int keys[], MyHashMap map) {
-        for (int i = 0; i < keys.length; ++i) {
-            try {
-                map.put(keys[i], i + 0L);
-            } catch (MapOverflowException MapOverflowException) {
-                MapOverflowException.getMessage();
-            }
-        }
-    }
-
-    private  void getAllValueMyHashMap(int keys[], MyHashMap map) {
-        for (int i = 0; i < keys.length; ++i) {
-            try {
-                map.get(keys[i]);
-            }
-            catch (KeyNotExistException e){
-            }
-        }
-    }
-
-    private  void getAllValueHashMap(int keys[], Map<Integer, Long> map) {
-        for (int i = 0; i < keys.length; ++i) {
-            map.get(keys[i]);
-        }
-    }
-
-
 }
