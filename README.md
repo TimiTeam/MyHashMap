@@ -1,4 +1,4 @@
-# MyHashMap (test task)
+# MyHashMap
 
 Project created by Timur Bujalo email: timurworkspace@gmail.com
 
